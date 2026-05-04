@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0E27">
+<title>Destek — Stellara</title>
+<meta name="description" content="Stellara — Türkçe AI astroloji uygulaması. Yıldızlar senin için ne söylüyor?">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+<style>:root {
+  --bg-primary: #0A0E27;
+  --bg-surface: #151933;
+  --bg-glass: rgba(255,255,255,0.06);
+  --bg-glass-border: rgba(255,255,255,0.12);
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-tertiary: #94A3B8;
+  --brand-purple: #7C3AED;
+  --brand-purple-light: #A78BFA;
+  --brand-gold: #F59E0B;
+  --brand-lavender: #C4B5FD;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(180deg, #0A0E27 0%, #151933 100%);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(124, 58, 237, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-icon {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-purple-light) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  background: linear-gradient(90deg, var(--brand-lavender), var(--brand-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 48px;
+  margin-bottom: 16px;
+  color: var(--brand-gold);
+  border-bottom: 1px solid var(--bg-glass-border);
+  padding-bottom: 8px;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 28px;
+  color: var(--brand-purple-light);
+}
+
+p, li { color: var(--text-secondary); }
+
+a {
+  color: var(--brand-purple-light);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.18s ease;
+}
+a:hover { border-bottom-color: var(--brand-purple-light); }
+
+ul, ol {
+  padding-left: 24px;
+}
+
+li { margin-bottom: 6px; }
+
+code {
+  background: var(--bg-glass);
+  border: 1px solid var(--bg-glass-border);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 14px;
+  color: var(--brand-gold);
+}
+
+blockquote {
+  border-left: 3px solid var(--brand-purple);
+  padding: 12px 20px;
+  margin: 24px 0;
+  background: var(--bg-glass);
+  border-radius: 0 12px 12px 0;
+  color: var(--text-secondary);
+}
+
+.meta {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+.footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--bg-glass-border);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.footer a { color: var(--text-tertiary); }
+.footer a:hover { color: var(--brand-lavender); border-bottom-color: var(--brand-lavender); }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--bg-glass-border);
+}
+
+th {
+  background: var(--bg-glass);
+  color: var(--brand-gold);
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .container { padding: 32px 16px 64px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 20px; margin-top: 36px; }
+}
+
+/* Hero feature pills */
+.hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 16px;
+}
+.feature-pill {
+  background: var(--bg-glass);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Early access form */
+.early-form {
+  margin: 40px 0 16px;
+  padding: 28px 24px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.18) 0%, rgba(245, 158, 11, 0.10) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 18px;
+}
+.early-title {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  background: linear-gradient(90deg, var(--brand-lavender), var(--brand-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 22px !important;
+}
+.early-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+.early-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.early-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 16px;
+  font-size: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.early-input::placeholder { color: var(--text-tertiary); }
+.early-input:focus {
+  border-color: var(--brand-gold);
+  background: rgba(0, 0, 0, 0.5);
+}
+.early-btn {
+  padding: 14px 22px;
+  font-size: 15px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--brand-gold), #FBBF24);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  transition: transform 0.12s ease, box-shadow 0.18s ease;
+}
+.early-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+}
+.early-btn:active { transform: translateY(0); }
+.early-hint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin: 12px 0 0;
+}
+
+/* Success state */
+.early-success {
+  margin: 40px 0 16px;
+  padding: 36px 24px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(124, 58, 237, 0.16));
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 18px;
+  text-align: center;
+}
+.early-success-icon {
+  font-size: 56px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 30px var(--brand-gold);
+}
+.early-success h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin: 0 0 8px !important;
+  color: var(--brand-gold);
+}
+.early-success p {
+  margin: 0;
+  color: var(--text-secondary);
+}</style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="brand">
+      <div class="brand-icon">✦</div>
+      <div class="brand-name">STELLARA</div>
+    </a>
+
+    <h1 id="stellara-destek-merkezi">Stellara Destek Merkezi</h1>
+<p><strong>Yürürlük:</strong> 3 Mayıs 2026
+<strong>İletişim:</strong> <a href="mailto:support@stellara.app">support@stellara.app</a></p>
+<p>Stellara ekibi olarak sorularına 24 saat içinde yanıt veriyoruz. Aşağıda sıkça sorulan konular ve hızlı çözümler var; bulamadığın bir şey olursa doğrudan e-posta at.</p>
+<h2 id="hzl-iletisim">Hızlı iletişim</h2>
+<ul>
+<li><strong>E-posta:</strong> <a href="mailto:support@stellara.app">support@stellara.app</a></li>
+<li><strong>Yanıt süresi:</strong> Genellikle 24 saat içinde, hafta sonları dahil</li>
+<li><strong>Dil:</strong> Türkçe (English support also available — please write in English if you prefer)</li>
+</ul>
+<h2 id="skca-sorulan-sorular">Sıkça sorulan sorular</h2>
+<h3 id="aboneligim-hakknda">Aboneliğim hakkında</h3>
+<p><strong>Aboneliğimi nasıl iptal ederim?</strong>
+iPhone Ayarlar → adın → Abonelikler → Stellara → İptal Et. İptal sonrası dönem sonuna kadar Premium özellikler aktif kalır, otomatik yenileme durdurulur. Stellara'dan ayrıca bir işlem yapmana gerek yok — Apple aboneliği yönetir.</p>
+<p><strong>3 günlük ücretsiz deneme nasıl çalışıyor?</strong>
+Deneme süresi içinde iptal edersen ücret alınmaz. Deneme bitiminden 24 saat önce iptal etmediysen seçtiğin plan otomatik olarak yenilenir (aylık ₺79.99 / yıllık ₺499.99). Deneme her Apple ID için bir kez kullanılabilir.</p>
+<p><strong>İade istiyorum, ne yapmalıyım?</strong>
+Apple App Store satın almaları için iade talebi Apple üzerinden yapılır: <a href="https://reportaproblem.apple.com">reportaproblem.apple.com</a>. Stellara olarak iadeyi doğrudan işleme alamıyoruz, ancak süreçte yardım için bize yazabilirsin.</p>
+<p><strong>"Satın almaları geri yükle" çalışmıyor.</strong>
+Profil → Satın Almaları Geri Yükle. Aynı Apple ID ile giriş yaptığından emin ol. Hâlâ sorun yaşıyorsan: uygulamayı yeniden başlat → giriş yap → tekrar dene. Devam ederse e-posta at, fatura ekran görüntüsü gönder.</p>
+<h3 id="hesabm-hakknda">Hesabım hakkında</h3>
+<p><strong>Hesabımı nasıl silerim?</strong>
+Profil → Hesabımı Sil → onay. Bu işlem <strong>geri alınamaz</strong>: tüm doğum verilerin, natal haritan, yorum geçmişin ve KVKK kapsamındaki açık rızaların kalıcı olarak silinir. Aktif aboneliğin varsa ayrıca App Store üzerinden iptal etmen gerekir (yukarıya bak).</p>
+<p><strong>Hesap silme talebim KVKK kapsamında ne kadar sürer?</strong>
+Uygulama içinden silme anında etkilidir. Yedeklerde 30 gün içinde tamamen kaldırılır. KVKK madde 7 kapsamındaki yazılı silme talepleri için 30 gün yasal süre içinde yanıt veriyoruz.</p>
+<p><strong>Doğum tarihimi/saatimi yanlış girdim, nasıl düzeltirim?</strong>
+Profil → Doğum Bilgileri → düzenle. Natal harita otomatik yeniden hesaplanır.</p>
+<p><strong>Apple ile giriş yaptım, e-postam görünmüyor.</strong>
+Bu Apple Sign In'in özel bir özelliği — "E-postamı Gizle" seçtiysen Apple sana özel takma e-posta adresi üretir. Stellara'dan gelen mailler bu adres üzerinden Apple ID'ne yönlendirilir.</p>
+<h3 id="yuz-analizi-gizlilik">Yüz Analizi &amp; gizlilik</h3>
+<p><strong>Yüz fotoğrafım saklanıyor mu?</strong>
+<strong>Hayır.</strong> Fotoğrafın yalnızca analiz anında işlenir ve sonuç döndüğü an cihazından silinir. Sunucularımızda saklanmaz, biyometrik şablon (embedding) oluşturulmaz, üçüncü taraflara aktarılmaz. Detay için <a href="/privacy">Gizlilik Politikası</a> §2.4.</p>
+<p><strong>Verdiğim açık rızayı geri çekebilir miyim?</strong>
+Evet. Profil → Hesabımı Sil ile tüm verilerin (KVKK kapsamındaki rıza dahil) silinir. Sadece belirli bir özellik için verdiğin rızayı çekmek istersen e-posta at.</p>
+<h3 id="teknik-sorunlar">Teknik sorunlar</h3>
+<p><strong>Uygulama açılmıyor / donuyor.</strong>
+- Önce: uygulamayı kapat (yukarı kaydır + üstten çek) → tekrar aç
+- Sonra: iPhone'u yeniden başlat
+- Hâlâ sorun varsa: App Store'da güncelleme var mı bak, son sürüme geç
+- Çözülmedi mi? E-posta at — iPhone modeli + iOS sürümü + sorunun ekran görüntüsü gönder</p>
+<p><strong>Günlük yorum gelmiyor / boş geliyor.</strong>
+İnternet bağlantını kontrol et (uçak modu kapalı mı, Wi-Fi/hücresel veri açık mı). Yoğun saatlerde geçici gecikmeler olabilir, 1-2 dk bekle ve "Yenile"ye dokun. Devam ederse e-posta at.</p>
+<p><strong>Doğum yerimi bulamıyorum.</strong>
+Şehir veya ilçe adıyla ara. Türkiye dışı şehirler için İngilizce yazımı dene (örn. "Tokyo", "Berlin"). Hâlâ bulamıyorsan: ülke adıyla ara veya yakındaki büyük şehri seç. E-posta at, manuel ekleyelim.</p>
+<p><strong>Bildirimler gelmiyor.</strong>
+iPhone Ayarlar → Bildirimler → Stellara → "Bildirimlere İzin Ver" açık olmalı. Uygulama içinden de Profil → Bildirimler bölümünden günlük yorum hatırlatıcısı saatini değiştirebilirsin.</p>
+<h3 id="icerik-kullanm">İçerik &amp; kullanım</h3>
+<p><strong>Stellara fal mı yoruyor?</strong>
+Hayır. Stellara <strong>eğlence ve kişisel keşif</strong> amaçlıdır. Astroloji geleneksel sembollerle iç gözlem aracı olarak sunulur — bilimsel iddia, kehanet veya tıbbi/finansal/hukuki tavsiye değildir. Kararlarını yıldızlara değil, kendi sezgine ve uzman görüşüne dayandır.</p>
+<p><strong>Yorumlar neden bazen tekrarlıyor?</strong>
+Yorumlar her gün AI tarafından doğum haritan + güncel gezegen konumlarına göre üretilir. Benzer enerjili dönemlerde tema tekrarı doğal — ama metin her seferinde yeniden yazılır. Aynı metni iki kez gördüğüne eminsen ekran görüntüsü gönder.</p>
+<p><strong>18 yaş altı kullanım?</strong>
+Stellara 18 yaş ve üzeri kullanıcılar içindir. KVKK kapsamındaki açık rıza ve özel kategorideki kişisel veri işlemleri için 18+ koşulu zorunludur.</p>
+<h2 id="hata-bildirimi">Hata bildirimi</h2>
+<p>Bir hata bulduysan yardımcı olabilirsin:</p>
+<ol>
+<li><strong>E-posta:</strong> <a href="mailto:support@stellara.app">support@stellara.app</a></li>
+<li><strong>Konu satırına:</strong> "[BUG]" yaz</li>
+<li><strong>İçeriğe ekle:</strong>
+   - iPhone modeli + iOS sürümü (Ayarlar → Genel → Hakkında)
+   - Stellara sürümü (Profil sayfasının altında)
+   - Hatanın oluştuğu adımlar (yapabilirsen ekran görüntüsü/video)</li>
+</ol>
+<h2 id="guvenlik-acg-bildirimi">Güvenlik açığı bildirimi</h2>
+<p>Güvenlik araştırmacısıysan veya bir açık keşfettiysen, sorumlu açıklama (responsible disclosure) için: <a href="mailto:support@stellara.app">support@stellara.app</a> — konu satırına "[SECURITY]" yaz. 72 saat içinde dönüş yaparız.</p>
+<h2 id="yasal">Yasal</h2>
+<ul>
+<li><a href="/privacy">Gizlilik Politikası</a> — KVKK + GDPR uyumlu, biyometrik veri akış detayı dahil</li>
+<li><a href="/terms">Kullanım Şartları</a> — abonelik, iptal, sorumluluk reddi</li>
+</ul>
+<hr />
+<p><strong>Kurucu / Veri Sorumlusu</strong>
+Batuhan Şen
+<a href="mailto:support@stellara.app">support@stellara.app</a></p>
+<p>© 2026 Stellara</p>
+
+    <div class="footer">
+      <span>© 2026 Stellara</span>
+      <span>
+        <a href="/privacy">Gizlilik</a> ·
+        <a href="/terms">Şartlar</a> ·
+        <a href="mailto:support@stellara.app">support@stellara.app</a>
+      </span>
+    </div>
+  </div>
+</body>
+</html>

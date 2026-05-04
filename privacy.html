@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0E27">
+<title>Gizlilik Politikası — Stellara</title>
+<meta name="description" content="Stellara — Türkçe AI astroloji uygulaması. Yıldızlar senin için ne söylüyor?">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+<style>:root {
+  --bg-primary: #0A0E27;
+  --bg-surface: #151933;
+  --bg-glass: rgba(255,255,255,0.06);
+  --bg-glass-border: rgba(255,255,255,0.12);
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-tertiary: #94A3B8;
+  --brand-purple: #7C3AED;
+  --brand-purple-light: #A78BFA;
+  --brand-gold: #F59E0B;
+  --brand-lavender: #C4B5FD;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(180deg, #0A0E27 0%, #151933 100%);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(124, 58, 237, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-icon {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-purple-light) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  background: linear-gradient(90deg, var(--brand-lavender), var(--brand-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 48px;
+  margin-bottom: 16px;
+  color: var(--brand-gold);
+  border-bottom: 1px solid var(--bg-glass-border);
+  padding-bottom: 8px;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 28px;
+  color: var(--brand-purple-light);
+}
+
+p, li { color: var(--text-secondary); }
+
+a {
+  color: var(--brand-purple-light);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.18s ease;
+}
+a:hover { border-bottom-color: var(--brand-purple-light); }
+
+ul, ol {
+  padding-left: 24px;
+}
+
+li { margin-bottom: 6px; }
+
+code {
+  background: var(--bg-glass);
+  border: 1px solid var(--bg-glass-border);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 14px;
+  color: var(--brand-gold);
+}
+
+blockquote {
+  border-left: 3px solid var(--brand-purple);
+  padding: 12px 20px;
+  margin: 24px 0;
+  background: var(--bg-glass);
+  border-radius: 0 12px 12px 0;
+  color: var(--text-secondary);
+}
+
+.meta {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+.footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--bg-glass-border);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.footer a { color: var(--text-tertiary); }
+.footer a:hover { color: var(--brand-lavender); border-bottom-color: var(--brand-lavender); }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--bg-glass-border);
+}
+
+th {
+  background: var(--bg-glass);
+  color: var(--brand-gold);
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .container { padding: 32px 16px 64px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 20px; margin-top: 36px; }
+}
+
+/* Hero feature pills */
+.hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 16px;
+}
+.feature-pill {
+  background: var(--bg-glass);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Early access form */
+.early-form {
+  margin: 40px 0 16px;
+  padding: 28px 24px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.18) 0%, rgba(245, 158, 11, 0.10) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 18px;
+}
+.early-title {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  background: linear-gradient(90deg, var(--brand-lavender), var(--brand-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 22px !important;
+}
+.early-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+.early-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.early-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 16px;
+  font-size: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.early-input::placeholder { color: var(--text-tertiary); }
+.early-input:focus {
+  border-color: var(--brand-gold);
+  background: rgba(0, 0, 0, 0.5);
+}
+.early-btn {
+  padding: 14px 22px;
+  font-size: 15px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--brand-gold), #FBBF24);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  transition: transform 0.12s ease, box-shadow 0.18s ease;
+}
+.early-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+}
+.early-btn:active { transform: translateY(0); }
+.early-hint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin: 12px 0 0;
+}
+
+/* Success state */
+.early-success {
+  margin: 40px 0 16px;
+  padding: 36px 24px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(124, 58, 237, 0.16));
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 18px;
+  text-align: center;
+}
+.early-success-icon {
+  font-size: 56px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 30px var(--brand-gold);
+}
+.early-success h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin: 0 0 8px !important;
+  color: var(--brand-gold);
+}
+.early-success p {
+  margin: 0;
+  color: var(--text-secondary);
+}</style>
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="brand">
+      <div class="brand-icon">✦</div>
+      <div class="brand-name">STELLARA</div>
+    </a>
+
+    <h1 id="stellara-gizlilik-politikas">Stellara — Gizlilik Politikası</h1>
+<p><strong>Yürürlük tarihi:</strong> 27 Nisan 2026
+<strong>Son güncelleme:</strong> 30 Nisan 2026
+<strong>Sürüm:</strong> 1.1
+<strong>Yayıncı:</strong> Batuhan Şen (Türkiye)
+<strong>İletişim:</strong> privacy@stellara.app</p>
+<hr />
+<h2 id="1-bu-politika-neyi-acklyor">1. Bu politika neyi açıklıyor</h2>
+<p>Stellara ("uygulama"), kişisel verilerinizi nasıl topladığımızı, kullandığımızı, sakladığımızı ve paylaştığımızı bu belgede şeffafça açıklar. KVKK (6698 sayılı Kişisel Verilerin Korunması Kanunu) ve GDPR (Genel Veri Koruma Tüzüğü) uyumlu çalışmaktayız.</p>
+<hr />
+<h2 id="2-topladgmz-veriler">2. Topladığımız veriler</h2>
+<h3 id="21-dogrudan-sizden-aldgmz-veriler">2.1. Doğrudan sizden aldığımız veriler</h3>
+<table>
+<thead>
+<tr>
+<th>Veri tipi</th>
+<th>Amaç</th>
+<th>Yasal dayanak</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Ad / takma ad</strong></td>
+<td>Kişiselleştirilmiş hitap</td>
+<td>Açık rıza</td>
+</tr>
+<tr>
+<td><strong>Doğum tarihi</strong></td>
+<td>Astrolojik hesaplama (güneş burcu)</td>
+<td>Açık rıza</td>
+</tr>
+<tr>
+<td><strong>Doğum saati</strong> (opsiyonel)</td>
+<td>Yükselen burç hesaplaması</td>
+<td>Açık rıza</td>
+</tr>
+<tr>
+<td><strong>Doğum yeri</strong> (opsiyonel, koordinat)</td>
+<td>Astronomik hesaplama (zaman dilimi)</td>
+<td>Açık rıza</td>
+</tr>
+<tr>
+<td><strong>Cinsiyet, yaş aralığı, hayat odağı</strong></td>
+<td>İçerik kişiselleştirme</td>
+<td>Açık rıza</td>
+</tr>
+<tr>
+<td><strong>Email</strong> (opsiyonel, kayıt)</td>
+<td>Hesap kurtarma</td>
+<td>Sözleşmenin ifası</td>
+</tr>
+</tbody>
+</table>
+<h3 id="22-otomatik-toplanan-veriler">2.2. Otomatik toplanan veriler</h3>
+<ul>
+<li><strong>Cihaz tanımlayıcısı (anonim)</strong> — RevenueCat abonelik durumu eşlemesi</li>
+<li><strong>Uygulama içi olay logları</strong> — özellik kullanımı (anonimleştirilmiş)</li>
+<li><strong>Crash raporları</strong> — hata ayıklama (kişisel veri içermez)</li>
+</ul>
+<h3 id="23-toplamadgmz-veriler">2.3. Toplamadığımız veriler</h3>
+<ul>
+<li>❌ Konum sürekli takibi (Step05'te bir kez doğum yeri, sonra yok)</li>
+<li>❌ Adres defteri / kişiler</li>
+<li>❌ Reklam takip ID'si (<code>IDFA</code>)</li>
+<li>❌ Üçüncü parti reklam SDK'leri</li>
+</ul>
+<h3 id="24-biyometrik-veri-ozel-nitelikli-kvkk-madde-6-gdpr-art-9">2.4. Biyometrik veri (özel nitelikli — KVKK madde 6 / GDPR Art. 9)</h3>
+<p>Yüz Analizi özelliği <strong>opsiyonel</strong> bir özelliktir ve yalnızca kullanıcının aşağıdaki <strong>iki ayrı açık rızasını</strong> verdikten sonra başlar:</p>
+<ol>
+<li><strong>Biyometrik veri rızası:</strong> Yüz fotoğrafının yalnızca analiz için işlenmesi</li>
+<li><strong>Eğlence amaçlı kullanım:</strong> Sonuçların eğlence amaçlı olduğu kabulü</li>
+</ol>
+<p><strong>İşlem akışı:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Adım</th>
+<th>Veri lokasyonu</th>
+<th>Süre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1. Fotoğraf çekme/seçme</td>
+<td>Cihaz lokal</td>
+<td>Kullanıcı kontrolünde</td>
+</tr>
+<tr>
+<td>2. Resize 512px + JPEG sıkıştırma</td>
+<td>Cihaz lokal</td>
+<td>&lt; 1 saniye</td>
+</tr>
+<tr>
+<td>3. Base64 encode + Stellara Edge Function'a gönderim</td>
+<td>HTTPS, Supabase EU-West</td>
+<td>&lt; 2 saniye</td>
+</tr>
+<tr>
+<td>4. Anthropic Claude Vision API çağrısı</td>
+<td>HTTPS, Anthropic ABD/AB</td>
+<td>5-10 saniye</td>
+</tr>
+<tr>
+<td>5. Metin yorumu (yüz embedding/template DEĞİL) dönüşü</td>
+<td>HTTPS</td>
+<td>&lt; 1 saniye</td>
+</tr>
+<tr>
+<td>6. <strong>Fotoğraf SİLİNİR</strong></td>
+<td>—</td>
+<td>Anında</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Özellikler:</strong></p>
+<ul>
+<li>❌ Yüz fotoğrafı <strong>HİÇBİR YERDE saklanmaz</strong> (Stellara, Supabase Edge Function veya Anthropic'te)</li>
+<li>❌ Yüz embedding / facial recognition template <strong>OLUŞTURULMAZ</strong></li>
+<li>❌ Aynı yüzü tanıyabilecek <strong>kalıcı tanımlayıcı</strong> üretilmez</li>
+<li>❌ Yüz fotoğrafı <strong>3. taraflara satılmaz</strong>, paylaşılmaz, eğitim verisinde kullanılmaz</li>
+<li>✅ Tek seferlik <strong>stateless</strong> API çağrısı — proxy'miz veri tutmaz, Anthropic'in privacy policy'si gereği prompts saklanmaz (Anthropic Privacy Policy Q1 2026)</li>
+<li>✅ Açık rıza <strong>istediğin an geri çekilebilir</strong> — Profil → Hesabımı Sil ile tüm hesap silinir</li>
+</ul>
+<p><strong>Yasal dayanak:</strong> KVKK madde 6/3 — açık rıza (özel nitelikli veri). GDPR Art. 9(2)(a) — explicit consent.</p>
+<p><strong>18 yaş altı kullanım yasağı:</strong> Stellara 18+ yaş için tasarlandı (Step03 doğum tarihi kontrolü). Yüz Analizi özelliği yetişkin kullanıcılara yöneliktir; çocuk fotoğrafı tespit edilirse yapay zeka detaylı analiz vermez.</p>
+<hr />
+<h2 id="3-verileri-nasl-kullanyoruz">3. Verileri nasıl kullanıyoruz</h2>
+<ol>
+<li><strong>Astrolojik içerik üretmek</strong>: doğum verileri Swiss Ephemeris (astronomia kütüphanesi) ile lokal olarak hesaplanır. Sonuç (gezegen pozisyonları, yorum) kişisel olarak size sunulur.</li>
+<li><strong>AI yorumları (Claude API — text)</strong>: doğum haritanız özet halinde Anthropic Claude API'ye gönderilir, yorum metni döner. Anthropic verilerinizi model eğitiminde kullanmaz (kurumsal sözleşme). Tam metin gönderilmez — sadece anonim astroloji parametreleri (örn. "Güneş Boğa, Ay İkizler, Yükselen Akrep").</li>
+</ol>
+<p><strong>Yüz Analizi (Vision)</strong>: Eğer Yüz Analizi özelliğini kullanırsan, fotoğrafın Stellara Edge Function üzerinden Anthropic Claude Vision API'sine gönderilir, yalnızca metin yorumu döner. Fotoğraf hiçbir yerde saklanmaz (detay: madde 2.4).
+3. <strong>Abonelik yönetimi</strong>: RevenueCat üzerinden Apple/Google ödeme bilgileriniz işlenir; kart bilgisi bizde tutulmaz.
+4. <strong>Bildirim</strong>: Sabah günlük yorumunuzu hatırlatmak için iOS bildirim sistemi kullanılır (cihazınızda yerel olarak planlanır).</p>
+<hr />
+<h2 id="4-verileri-nerede-saklyoruz">4. Verileri nerede saklıyoruz</h2>
+<table>
+<thead>
+<tr>
+<th>Veri</th>
+<th>Saklama yeri</th>
+<th>Şifreleme</th>
+<th>Süre</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Profil verileri</td>
+<td>Supabase EU-West (Frankfurt)</td>
+<td>AES-256 (rest), TLS 1.3 (transit)</td>
+<td>Hesap silinene kadar</td>
+</tr>
+<tr>
+<td>Abonelik durumu</td>
+<td>RevenueCat (US)</td>
+<td>TLS 1.3</td>
+<td>Abonelik bitiminden 30 gün sonra anonim</td>
+</tr>
+<tr>
+<td>AI yorum cache</td>
+<td>Cihazınızda lokal (AsyncStorage)</td>
+<td>iOS Keychain</td>
+<td>Manuel temizlikte silinir</td>
+</tr>
+<tr>
+<td>Crash logs</td>
+<td>Sentry (DE)</td>
+<td>TLS 1.3</td>
+<td>90 gün</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Yurt dışı aktarım:</strong> Supabase EU-West (Almanya — GDPR alanı), RevenueCat (US — Privacy Shield Framework alternatifi olarak Standard Contractual Clauses imzalı), Anthropic (US — DPA imzalı). KVKK Madde 9 uyumu için açık rızanız Onboarding Step06'daki AI Consent Modal'da alınır.</p>
+<hr />
+<h2 id="5-ucuncu-taraflarla-paylasm">5. Üçüncü taraflarla paylaşım</h2>
+<p>Verilerinizi <strong>satmıyoruz</strong>. Aşağıdaki hizmet sağlayıcılarıyla, hizmet sunmak için sınırlı paylaşım yapılır:</p>
+<table>
+<thead>
+<tr>
+<th>Sağlayıcı</th>
+<th>Veri</th>
+<th>Amaç</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Anthropic Claude</strong></td>
+<td>Astroloji parametreleri (anonim)</td>
+<td>AI yorum üretimi</td>
+</tr>
+<tr>
+<td><strong>Supabase</strong></td>
+<td>Profil + auth</td>
+<td>Veritabanı + Apple Sign In bridge</td>
+</tr>
+<tr>
+<td><strong>RevenueCat</strong></td>
+<td>Cihaz ID + abonelik</td>
+<td>IAP yönetimi</td>
+</tr>
+<tr>
+<td><strong>Apple App Store</strong></td>
+<td>Cihaz ID + ödeme</td>
+<td>IAP işlem</td>
+</tr>
+<tr>
+<td><strong>Sentry</strong> (gelecek)</td>
+<td>Crash stack trace</td>
+<td>Hata ayıklama</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="6-haklarnz-kvkk-madde-11-gdpr-article-15-22">6. Haklarınız (KVKK Madde 11 + GDPR Article 15-22)</h2>
+<p>Şu hakları kullanabilirsiniz, talebiniz <strong>30 gün içinde</strong> ücretsiz cevaplanır:</p>
+<ul>
+<li><strong>Erişim</strong>: hangi veriler işleniyor öğrenme</li>
+<li><strong>Düzeltme</strong>: yanlış bilgileri güncelletme</li>
+<li><strong>Silme</strong>: tüm verilerinizin kalıcı silinmesi (uygulama içi: Profil → Hesabı Sil)</li>
+<li><strong>İşlemenin kısıtlanması</strong>: belirli amaçlar için kullanımı durdurma</li>
+<li><strong>Veri taşınabilirliği</strong>: verilerinizi JSON formatında dışa aktarma (talep üzerine)</li>
+<li><strong>İtiraz</strong>: profilleme veya AI yorumlamaya itiraz</li>
+</ul>
+<p><strong>Talep yöntemi:</strong> privacy@stellara.app adresine yazın veya uygulama içinde Profil → "Verilerimi Gönder / Sil" butonunu kullanın.</p>
+<hr />
+<h2 id="7-cocuklar">7. Çocuklar</h2>
+<p>Stellara <strong>13 yaş altındaki kullanıcılara yöneliktir değildir</strong>. Apple Age Rating: 12+. Eğer 13 yaş altında bir çocuğun verisini topladığımızı tespit edersek, derhal silinir. Veliler bildirim için: privacy@stellara.app.</p>
+<hr />
+<h2 id="8-veri-ihlali-bildirimi">8. Veri ihlali bildirimi</h2>
+<p>Veri ihlali (kişisel veri sızıntısı, izinsiz erişim) tespit edersek:
+- KVKK Madde 12: 72 saat içinde Kurum'a bildirilir
+- Etkilenen kullanıcılara email/in-app notif ile haber verilir
+- Public post-mortem: stellara.app/security/incident yayınlanır</p>
+<hr />
+<h2 id="9-cihaz-izinleri">9. Cihaz İzinleri</h2>
+<p>iOS izin pop-up'larında verdiğiniz onaylar:</p>
+<table>
+<thead>
+<tr>
+<th>İzin</th>
+<th>Amaç</th>
+<th>Reddedebilir misiniz?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bildirim</strong></td>
+<td>Sabah günlük yorum</td>
+<td>Evet — uygulama çalışır, bildirim gelmez</td>
+</tr>
+<tr>
+<td><strong>Konum</strong> (kullanım sırasında)</td>
+<td>Doğum yeri otomatik bul (Step05)</td>
+<td>Evet — manuel şehir seçilir</td>
+</tr>
+<tr>
+<td><strong>Kamera</strong> (gelecek)</td>
+<td>Kahve falı fotoğraf</td>
+<td>Evet — özellik kapalı</td>
+</tr>
+<tr>
+<td><strong>Galeri</strong> (gelecek)</td>
+<td>Kahve falı</td>
+<td>Evet — özellik kapalı</td>
+</tr>
+<tr>
+<td><strong>App Tracking</strong></td>
+<td>Reklam izleme</td>
+<td><strong>Sormuyoruz</strong> — reklam yok</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="10-politika-degisiklikleri">10. Politika değişiklikleri</h2>
+<p>Önemli değişiklikleri (yeni veri tipi, yeni paylaşım ortağı, KVKK kategorisi değişimi) <strong>30 gün önceden</strong> in-app notif + email ile bildiririz. Yürürlük tarihi her yeni sürümde yukarıda güncellenir.</p>
+<hr />
+<h2 id="11-iletisim">11. İletişim</h2>
+<table>
+<thead>
+<tr>
+<th>Konu</th>
+<th>Adres</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Veri talebi</td>
+<td>privacy@stellara.app</td>
+</tr>
+<tr>
+<td>Genel destek</td>
+<td>support@stellara.app</td>
+</tr>
+<tr>
+<td>Hukuki</td>
+<td>legal@stellara.app</td>
+</tr>
+<tr>
+<td>Postal</td>
+<td>Türkiye (talep üzerine)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Veri Sorumlusu:</strong> Batuhan Şen (gerçek kişi, Türkiye Cumhuriyeti vatandaşı)
+<strong>KVKK Veri Sorumlusu Sicil No:</strong> Başvuru aşamasında — submit sonrası 30 gün içinde tamamlanacak.</p>
+<hr />
+<p><em>Stellara Türkiye merkezli, açık kaynak prensiplerine sahip, KVKK uyumlu bir astroloji uygulamasıdır. Verileriniz size aittir.</em> ✦</p>
+
+    <div class="footer">
+      <span>© 2026 Stellara</span>
+      <span>
+        <a href="/privacy">Gizlilik</a> ·
+        <a href="/terms">Şartlar</a> ·
+        <a href="mailto:support@stellara.app">support@stellara.app</a>
+      </span>
+    </div>
+  </div>
+</body>
+</html>

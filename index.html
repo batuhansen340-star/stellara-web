@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0E27">
+<title>Stellara — AI Astroloji — Stellara</title>
+<meta name="description" content="Stellara — Türkçe AI astroloji uygulaması. Yıldızlar senin için ne söylüyor?">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✦%3C/text%3E%3C/svg%3E">
+<style>:root {
+  --bg-primary: #0A0E27;
+  --bg-surface: #151933;
+  --bg-glass: rgba(255,255,255,0.06);
+  --bg-glass-border: rgba(255,255,255,0.12);
+  --text-primary: #F1F5F9;
+  --text-secondary: #CBD5E1;
+  --text-tertiary: #94A3B8;
+  --brand-purple: #7C3AED;
+  --brand-purple-light: #A78BFA;
+  --brand-gold: #F59E0B;
+  --brand-lavender: #C4B5FD;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', system-ui, sans-serif;
+  background: linear-gradient(180deg, #0A0E27 0%, #151933 100%);
+  color: var(--text-primary);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 20% 0%, rgba(124, 58, 237, 0.18) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 40px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.brand-icon {
+  width: 40px; height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--brand-purple) 0%, var(--brand-purple-light) 100%);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+}
+
+.brand-name {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 800;
+  margin: 0 0 8px;
+  background: linear-gradient(90deg, var(--brand-lavender), var(--brand-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.2;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 700;
+  margin-top: 48px;
+  margin-bottom: 16px;
+  color: var(--brand-gold);
+  border-bottom: 1px solid var(--bg-glass-border);
+  padding-bottom: 8px;
+}
+
+h3 {
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 28px;
+  color: var(--brand-purple-light);
+}
+
+p, li { color: var(--text-secondary); }
+
+a {
+  color: var(--brand-purple-light);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.18s ease;
+}
+a:hover { border-bottom-color: var(--brand-purple-light); }
+
+ul, ol {
+  padding-left: 24px;
+}
+
+li { margin-bottom: 6px; }
+
+code {
+  background: var(--bg-glass);
+  border: 1px solid var(--bg-glass-border);
+  padding: 2px 6px;
+  border-radius: 6px;
+  font-family: 'SF Mono', Menlo, monospace;
+  font-size: 14px;
+  color: var(--brand-gold);
+}
+
+blockquote {
+  border-left: 3px solid var(--brand-purple);
+  padding: 12px 20px;
+  margin: 24px 0;
+  background: var(--bg-glass);
+  border-radius: 0 12px 12px 0;
+  color: var(--text-secondary);
+}
+
+.meta {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+.footer {
+  margin-top: 80px;
+  padding-top: 32px;
+  border-top: 1px solid var(--bg-glass-border);
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--text-tertiary);
+  font-size: 14px;
+}
+
+.footer a { color: var(--text-tertiary); }
+.footer a:hover { color: var(--brand-lavender); border-bottom-color: var(--brand-lavender); }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 16px 0;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--bg-glass-border);
+}
+
+th {
+  background: var(--bg-glass);
+  color: var(--brand-gold);
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .container { padding: 32px 16px 64px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 20px; margin-top: 36px; }
+}
+
+/* Hero feature pills */
+.hero-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 24px 0 16px;
+}
+.feature-pill {
+  background: var(--bg-glass);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Early access form */
+.early-form {
+  margin: 40px 0 16px;
+  padding: 28px 24px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.18) 0%, rgba(245, 158, 11, 0.10) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.35);
+  border-radius: 18px;
+}
+.early-title {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+  border-bottom: none !important;
+  padding-bottom: 0 !important;
+  background: linear-gradient(90deg, var(--brand-lavender), var(--brand-gold));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 22px !important;
+}
+.early-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin: 0 0 18px;
+  line-height: 1.5;
+}
+.early-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.early-input {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 16px;
+  font-size: 16px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid var(--bg-glass-border);
+  border-radius: 12px;
+  color: var(--text-primary);
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.18s ease, background 0.18s ease;
+}
+.early-input::placeholder { color: var(--text-tertiary); }
+.early-input:focus {
+  border-color: var(--brand-gold);
+  background: rgba(0, 0, 0, 0.5);
+}
+.early-btn {
+  padding: 14px 22px;
+  font-size: 15px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--brand-gold), #FBBF24);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  transition: transform 0.12s ease, box-shadow 0.18s ease;
+}
+.early-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.35);
+}
+.early-btn:active { transform: translateY(0); }
+.early-hint {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin: 12px 0 0;
+}
+
+/* Success state */
+.early-success {
+  margin: 40px 0 16px;
+  padding: 36px 24px;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.16), rgba(124, 58, 237, 0.16));
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: 18px;
+  text-align: center;
+}
+.early-success-icon {
+  font-size: 56px;
+  margin-bottom: 12px;
+  text-shadow: 0 0 30px var(--brand-gold);
+}
+.early-success h2 {
+  border-bottom: none;
+  padding-bottom: 0;
+  margin: 0 0 8px !important;
+  color: var(--brand-gold);
+}
+.early-success p {
+  margin: 0;
+  color: var(--text-secondary);
+}</style>
+</head>
+<body id="home">
+  <div class="container">
+    <a href="/" class="brand">
+      <div class="brand-icon">✦</div>
+      <div class="brand-name">STELLARA</div>
+    </a>
+
+    
+<h1>Yıldızlar senin için ne söylüyor?</h1>
+<p class="meta">Türkiye'nin en kişisel AI astroloji uygulaması — yakında App Store'da</p>
+
+<div class="hero-features">
+  <div class="feature-pill">🎴 78 RWS tarot</div>
+  <div class="feature-pill">🪐 Natal harita</div>
+  <div class="feature-pill">🌙 Günlük yorum</div>
+  <div class="feature-pill">💞 Uyumluluk</div>
+</div>
+
+<form id="early-access-form" action="/api/early-access" method="POST" class="early-form">
+  <h2 class="early-title">Lansmana ilk sen ulaş</h2>
+  <p class="early-desc">App Store'da yayına geçtiğimizde sana özel %50 indirim kuponu — sadece e-posta adresini bırak.</p>
+  <input type="hidden" name="source" value="landing">
+  <div class="early-row">
+    <input
+      type="email"
+      name="email"
+      required
+      placeholder="adres@e-posta.com"
+      autocomplete="email"
+      class="early-input"
+    >
+    <button type="submit" class="early-btn">Erken erişim →</button>
+  </div>
+  <p class="early-hint">İstediğin an çıkabilirsin. Spam yok, lansman duyurusu + indirim kuponu.</p>
+</form>
+
+<h2>Önemli linkler</h2>
+<ul>
+  <li><a href="/privacy">Gizlilik Politikası</a> — KVKK + GDPR uyumlu</li>
+  <li><a href="/terms">Kullanım Şartları</a> — abonelik, iptal, sorumluluk reddi</li>
+  <li><a href="mailto:support@stellara.app">support@stellara.app</a> — destek, 24 saat yanıt</li>
+</ul>
+
+<blockquote>
+Stellara fal veya kehanet uygulaması değildir. Eğlence ve kişisel keşif amaçlıdır. Kararlarını yıldızlara değil, kendi sezgine ve deneyimine dayandır.
+</blockquote>
+
+<script>
+// Form success/duplicate state — URL ?status=success ile geldiyse banner göster
+(function(){
+  var params = new URLSearchParams(window.location.search);
+  var status = params.get('status');
+  var form = document.getElementById('early-access-form');
+  if (!form) return;
+  if (status === 'success') {
+    form.outerHTML = '<div class="early-success">' +
+      '<div class="early-success-icon">✦</div>' +
+      '<h2>Listeye eklendin</h2>' +
+      '<p>Stellara çıktığında ilk haber alacaksın. Yıldızlar seninle.</p>' +
+    '</div>';
+  } else if (status === 'duplicate') {
+    form.outerHTML = '<div class="early-success">' +
+      '<div class="early-success-icon">🌙</div>' +
+      '<h2>Zaten listedeyiz</h2>' +
+      '<p>Sen bu e-postayı daha önce bıraktın. Lansman gününde haberin olacak.</p>' +
+    '</div>';
+  }
+})();
+</script>
+
+
+    <div class="footer">
+      <span>© 2026 Stellara</span>
+      <span>
+        <a href="/privacy">Gizlilik</a> ·
+        <a href="/terms">Şartlar</a> ·
+        <a href="mailto:support@stellara.app">support@stellara.app</a>
+      </span>
+    </div>
+  </div>
+</body>
+</html>
